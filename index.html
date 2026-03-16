@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Esfera Interativa</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a;
+        }
+
+        .esfera {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #3498db;
+            
+            /* O gradiente radial cria o efeito de profundidade 3D */
+            background: radial-gradient(circle at 65% 15%, #ffffff 1px, aqua 3%, darkblue 60%, aqua 100%);
+            
+            box-shadow: inset -20px -20px 50px rgba(0,0,0,0.5), 
+                        10px 10px 30px rgba(0,0,0,0.3);
+            
+            cursor: pointer;
+            transition: background 0.5s ease, transform 0.3s ease;
+        }
+
+        .esfera:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="esfera" id="minhaEsfera"></div>
+
+    <script>
+        const esfera = document.getElementById('minhaEsfera');
+
+        esfera.addEventListener('mouseenter', () => {
+            // Gera uma cor aleatória em formato hexadecimal
+            const corAleatoria = '#' + Math.floor(Math.random()*16777215).toString(16);
+            
+            // Aplica a nova cor mantendo o efeito de esfera (gradiente)
+            esfera.style.background = `radial-gradient(circle at 65% 15%, #ffffff 1px, ${corAleatoria} 3%, #000 60%, ${corAleatoria} 100%)`;
+        });
+    </script>
+</body>
+</html>
